@@ -35,7 +35,7 @@ It is created using the **C programming Language** and it can do many functional
  - **AUTHORS** -> List of contributors to this repository
  - **man_1_simple_shell** -> Manual page for the simple_shell
  - **shell.h** -> Header file
- - **shell.c** -> main function
+ - **shelltest.c** -> main function
 	- **sig_handler** -> handles the Ctrl + C signal
 	- **_EOF** -> handles the End Of File condition
 
@@ -103,5 +103,5 @@ exit
 David Mushi
 Prosper Hagenimana
 
-[Article]: <https://www.linkedin.com/pulse/how-shell-works-prosper-hangenimana/?published=t
+[Article]: <https://www.linkedin.com/pulse/how-shell-works-prosper-hagenimana/?published=t
 
