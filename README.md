@@ -35,7 +35,7 @@ It is created using the **C programming Language** and it can do many functional
  - **AUTHORS** -> List of contributors to this repository
  - **man_1_simple_shell** -> Manual page for the simple_shell
  - **shell.h** -> Header file
- - **shelltest.c** -> main function
+ - **simple_shell.c** -> main function
 	- **sig_handler** -> handles the Ctrl + C signal
 	- **_EOF** -> handles the End Of File condition
 
