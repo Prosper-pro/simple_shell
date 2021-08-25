@@ -1,67 +1,36 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef _SHELL_H_
+#define _SHELL_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/wait.h>
-#include <sys/types.h>
-#include <errno.h>
-#include <stddef.h>
-#include <sys/stat.h>
-#include <signal.h>
-
-int _putchar(char c);
-void _puts(char *str);
-int _strlen(char *s);
-char *_strdup(char *str);
-char *concat_all(char *name, char *sep, char *value);
-
-char **splitstring(char *str, const char *delim);
-void execute(char **argv);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-
+/**
+ * struct process_builtin - structure to hold a command and a
+ * function pointer to hold the command
+ *
+ * @cmd: the command to execute
+ * @execute_builtin: pointer to a function that takes a command and
+ * executes it
+ *
+ */
+struct process_builtin
+{
+	char *cmd; void (*execute_builtin)(char **tokens);
+};
+typedef struct process_builtin builtin_t;
 
 extern char **environ;
 
-/**
- * struct list_path - Linked list containing PATH directories
- * @dir: directory in path
- * @p: pointer to next node
- */
-typedef struct list_path
-{
-	char *dir;
-	struct list_path *p;
-} list_path;
+int isbuiltin(const char *cmd);
+char **tokenize(char *input);
+void executebuiltin(char **tokens);
+int executecmd(const char *name, char *const argv[], char *const env[]);
+void printprompt(void);
+void __exit(char **tokens);
+void _env(char **tokens);
+char *check_path(char *file);
+int check_file(char *dirname, char *file);
+char *_strdup(char *str);
+int  _strlen(char *str);
+int _strcmp(const char *s1, const char *s2);
+char *_strcpy(char *dest, char *src);
+int _atoi(char *str);
 
-
-char *_getenv(const char *name);
-list_path *add_node_end(list_path **head, char *str);
-list_path *linkpath(char *path);
-char *_which(char *filename, list_path *head);
-
-/**
- * struct mybuild - pointer to function with corresponding buildin command
- * @name: buildin command
- * @func: execute the buildin command
- */
-typedef struct mybuild
-{
-	char *name;
-	void (*func)(char **);
-} mybuild;
-
-void(*checkbuild(char **arv))(char **arv);
-int _atoi(char *s);
-void exitt(char **arv);
-void env(char **arv);
-void _setenv(char **arv);
-void _unsetenv(char **arv);
-
-void freearv(char **arv);
-void free_list(list_path *head);
-
-
-#endif
+#endif /* _SHELL_H_ */
